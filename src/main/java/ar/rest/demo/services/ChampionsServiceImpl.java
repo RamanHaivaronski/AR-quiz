@@ -2,6 +2,7 @@ package ar.rest.demo.services;
 
 import ar.rest.demo.dao.ChampionDAO;
 import ar.rest.demo.models.Answer;
+import ar.rest.demo.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,8 @@ public class ChampionsServiceImpl {
         return championDAO.getAnswerCheck(qid, text);
     }
 
-    public Answer getAnswer(int qid, String text){
-        Answer a = championDAO.getAnswerCheck(qid, text);
-        System.out.println(a);
-        return a;
+    public Question getQuestion(int qid) {
+        return championDAO.getQuestion(qid);
     }
 
 }

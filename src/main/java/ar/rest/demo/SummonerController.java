@@ -2,7 +2,9 @@ package ar.rest.demo;
 
 
 import ar.rest.demo.models.Answer;
+import ar.rest.demo.models.Question;
 import ar.rest.demo.services.ChampionsServiceImpl;
+import jdk.nashorn.internal.runtime.QuotedStringTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,25 +16,20 @@ public class SummonerController {
     @Autowired
     ChampionsServiceImpl service;
 
-
-//    @GetMapping("/result/{qid}/{text}")
-//    @ResponseBody
-//    public boolean getAnswerCorrect(@PathVariable("qid") int qid1, @PathVariable("text") String text1) {
-//        return service.getAnswerCorrect(qid1, text1);
-//    }
-
-    @GetMapping("/result/{qid}/{text}")
+    @PostMapping("/result/{qid}/{text}")
     @ResponseBody
-    public boolean getAnswer1(@PathVariable("qid") int qid1, @PathVariable("text") String text1) {
-        Answer result = service.getAnswer(qid1, text1);
+    public boolean getAnswer(@PathVariable("qid") int qid, @PathVariable("text") String text) {
+        Answer result = service.getAnswerCorrect(qid, text);
         boolean res = result.isAnswer_correct();
         return res;
     }
 
-//    // 2 returns your total mastery level
-//    @GetMapping("/summonerMastery/{summonerName}")
-//    public int getSummonerMastery(@PathVariable("summonerName") String summonerName) {
-//        return service.getSummonerMastery(summonerName);
-//    }
+    @GetMapping("/question/{qid}")
+    @ResponseBody
+    public Question getQuestion(@PathVariable("qid") int qid) {
+        return service.getQuestion(qid);
+    }
+
+
 
 }
