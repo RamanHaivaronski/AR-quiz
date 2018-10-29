@@ -1,13 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/index.css">
-    <link rel="shortcut icon" href="./icon.jpg">
-    <title>LoL Statistics</title>
-</head>
-<body>
+<!-- XILK epolsoft.com-->
+<!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="./js/aframe-ar.js"></script>
+<script src="./js/global.js"></script>
+<body style='margin : 0px; overflow: hidden;'>
 <div id="app"></div>
-<script src="/bundle.js" type="text/javascript" charset="utf-8"></script>
+<script src="./bundle.js"></script>
+<!-- arjs - debugUIEnabled: false; swithc off debug -->
+
+<!-- draw scene -->
+<a-scene class="aframebox" embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+  <!-- preset 3D object "EPOL SOFT" -->
+  <!--<a-assets>-->
+  <!--<a-asset-item id="epolsoft" src="./markers/epolsoft_b.gltf"></a-asset-item>-->
+  <!--</a-assets>-->
+
+  <!--&lt;!&ndash; set custom EpolSoft custom marker  &ndash;&gt;-->
+  <!--<a-marker type='pattern' url='./markers/e-marker.patt'>-->
+  <!--&lt;!&ndash; usage of custom EpolSot object  &ndash;&gt;-->
+  <!--<a-entity position="0 1 0" gltf-model="#epolsoft">-->
+  <!--&lt;!&ndash; set animation event for custom EpolSot object  &ndash;&gt;-->
+  <!--<a-animation begin="click" attribute="rotation" to="0 360 0" easing="linear" dur="2000" fill="backwards"/>-->
+  <!--</a-entity>-->
+  <!--</a-marker>-->
+
+  <!--<a-gltf-model onclick="clicked()" src="#epolsoft" rotation="90 0 0" position="0 4.6 -7.2"></a-gltf-model>-->
+
+  <a-sphere
+    id="quest_1"
+    position="0 2.25 -5"
+    scale="0.21 0.21 0.21"
+    color="#AAAAAA"
+    radius="1.25"
+    shadow onclick="clicked(1)">
+    <a-animation attribute="position"
+                 dur="1000"
+                 fill="forwards"
+                 to="0 2.50 -5"
+                 direction="alternate"
+                 repeat="indefinite"></a-animation>
+  </a-sphere>
+
+
+  <!-- set camera  -->
+  <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"/>
+
+</a-scene>
+
+
 </body>
-</html>

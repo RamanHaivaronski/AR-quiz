@@ -1,13 +1,13 @@
+/**
+ * Created by Denis on 23.04.2018.
+ */
 import {combineReducers} from 'redux';
+import testReducer from "../reducers/testReducer"
+import questionReducer from "./questionReducer";
 
-import heroes from "./heroReducer"
-import freeChampions from "./freeChampionsReducer"
-import championMastery from "./championMasteryReducer"
 
-const appReducer = combineReducers({
-   heroes,freeChampions, championMastery
-});
+const appReducer = combineReducers({questData:questionReducer});
 
 export default (state, action) => {
-    return appReducer(state, action);
+  return appReducer(state, action);
 }

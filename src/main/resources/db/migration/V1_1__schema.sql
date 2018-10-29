@@ -14,3 +14,13 @@ CREATE TABLE public.answer
   question_id int NOT NULL,
   CONSTRAINT answer_question_qid_fk FOREIGN KEY (question_id) REFERENCES question (question_id)
 );
+
+CREATE TABLE public.user_answer
+(
+  user_id VARCHAR(100),
+  question_id int NOT NULL,
+  answer_id int NOT NULL,
+  is_correct boolean,
+  CONSTRAINT user_answer_question_fk FOREIGN KEY (question_id) REFERENCES question (question_id),
+  CONSTRAINT user_answer_answer_fk FOREIGN KEY (answer_id) REFERENCES answer (answer_id)
+)

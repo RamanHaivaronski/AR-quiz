@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface AnswerDAO {
 
-    @Select("SELECT is_correct FROM public.answer WHERE question_id=#{question_id} AND answer_id=#{answer_id}")
-    Boolean checkAnswer(@Param("question_id") long questionId, @Param("answer_id") long answerId);
+    @Select("SELECT is_correct FROM public.answer WHERE question_id=#{questionId} AND answer_id=#{answerId}")
+    Boolean checkAnswer(long questionId, long answerId);
 
 }

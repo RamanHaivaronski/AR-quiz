@@ -1,6 +1,1 @@
-//hero
-export const LOAD_START_HERO_FULL = "LOAD_START_HERO_FULL";
-export const LOAD_END_HERO_FULL = "LOAD_END_HERO_FULL";
-export const LOAD_ERROR_HERO_FULL = "LOAD_ERROR_HERO_FULL";
-
-export const CHANGE_LITE_MODE = "CHANGE_LITE_MODE";
+export const TEST = "TEST";

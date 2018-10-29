@@ -7,3 +7,4 @@ POSTGRES_HOST = <host where postgres instance running>
 POSTGRES_PORT = <port>
 POSTGRES_USERNAME = <username>
 POSTGRES_PASSWORD = <user password>
+OAUTH_REDIRECT_ROOT = <root of server>

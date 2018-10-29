@@ -1,0 +1,11 @@
+.questFrame {
+    position: fixed;
+    left: 1vw;
+    top: 1vw;
+    background: #f1f3e8db;
+    width: 98vw;
+    height: 98vh;
+    border-radius: 50px;
+    z-index: 100;
+    border: 10px;
+}

@@ -1,11 +1,14 @@
 package ar.rest.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
 public class Answer {
-    private int answerId;
+    private Long answerId;
     private String text;
-    private boolean isCorrect;
-    private int questionId;
+    @JsonIgnore
+    private Boolean isCorrect;
+    @JsonIgnore
+    private Long questionId;
 }
