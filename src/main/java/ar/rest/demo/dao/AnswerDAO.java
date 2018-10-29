@@ -12,6 +12,6 @@ import java.util.List;
 public interface AnswerDAO {
 
     @Select("SELECT is_correct FROM public.answer WHERE question_id=#{questionId} AND answer_id=#{answerId}")
-    Boolean checkAnswer(long questionId, long answerId);
+    Boolean checkAnswer(@Param("questionId") long questionId,@Param("answerId") long answerId);
 
 }

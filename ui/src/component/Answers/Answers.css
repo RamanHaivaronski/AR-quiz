@@ -1,0 +1,11 @@
+.answer {
+    width: 80vw;
+    background-color: #5cad5c;
+    border-radius: 50px;
+    text-align: center;
+    height: 10vh;
+    margin: 2vh;
+    font-size: 1em;
+    font-family: sans-serif;
+    color: white;
+}

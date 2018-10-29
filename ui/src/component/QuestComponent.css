@@ -6,6 +6,29 @@
     width: 98vw;
     height: 98vh;
     border-radius: 50px;
-    z-index: 100;
     border: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.questDataFrame {
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: center;
+    display: flex;
+}
+
+.questHeader {
+
+}
+
+.close {
+    float: right;
+    margin-right: 4vw;
+    margin-top: 2vh;
+    text-decoration: none;
+    font-size: 2em;
+    color: #333333;
+    background: transparent;
+    border: 0;
 }

@@ -2,7 +2,11 @@
     position: fixed;
     left: 0;
     top: 0;
-    background: #bed163cc;
     width: 100vw;
     height: 100vh;
+    z-index: 9999;
+}
+
+.close-thik:after {
+    content: '✖'; /* UTF-8 symbol */
 }
