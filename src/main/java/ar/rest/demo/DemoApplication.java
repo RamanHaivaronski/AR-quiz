@@ -10,5 +10,4 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    // icons https://ddragon.leagueoflegends.com/cdn/8.20.1/img/champion/Aatrox.png
 }

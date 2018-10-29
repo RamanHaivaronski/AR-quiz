@@ -1,0 +1,13 @@
+INSERT INTO question VALUES (1, 'q1', NULL, NULL);
+INSERT INTO question VALUES (2, 'q2', NULL, NULL);
+INSERT INTO question VALUES (3, 'q3', NULL, NULL);
+
+INSERT INTO answer VALUES (1, 'q1a1', FALSE, 1);
+INSERT INTO answer VALUES (2, 'q1a2', FALSE, 1);
+INSERT INTO answer VALUES (3, 'q1a3', TRUE, 1);
+INSERT INTO answer VALUES (4, 'q2a1', FALSE, 2);
+INSERT INTO answer VALUES (5, 'q2a2', TRUE, 2);
+INSERT INTO answer VALUES (6, 'q2a3', TRUE, 2);
+INSERT INTO answer VALUES (7, 'q3a1', TRUE, 3);
+INSERT INTO answer VALUES (8, 'q3a2', FALSE, 3);
+INSERT INTO answer VALUES (9, 'q3a3', FALSE, 3);
