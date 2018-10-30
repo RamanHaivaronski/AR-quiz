@@ -1,15 +1,10 @@
 package ar.rest.demo.controller;
 
-import ar.rest.demo.models.Answer;
 import ar.rest.demo.models.Question;
 import ar.rest.demo.services.QuestionService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/api/question")

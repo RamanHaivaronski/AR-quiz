@@ -17,4 +17,5 @@ public class UnsecuredConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**").permitAll();
     }
+
 }

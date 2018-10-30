@@ -1,14 +1,35 @@
 .questFrame {
+    /*position: fixed;*/
+    /*left: 1vw;*/
+    /*top: 1vw;*/
+    /*background: #f1f3e8db;*/
+    /*width: 98vw;*/
+    /*height: 98vh;*/
+    /*border-radius: 50px;*/
+    /*border: 10px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+
+
     position: fixed;
-    left: 1vw;
-    top: 1vw;
-    background: #f1f3e8db;
-    width: 98vw;
-    height: 98vh;
-    border-radius: 50px;
-    border: 10px;
-    display: flex;
-    flex-direction: column;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}
+
+.test {
+     position: fixed;
+     left: 1vw;
+     top: 1vw;
+     background: #f1f3e8db;
+     width: 98vw;
+     height: 98vh;
+     border-radius: 50px;
+     border: 10px;
+     display: flex;
+     flex-direction: column;
 }
 
 .questDataFrame {
