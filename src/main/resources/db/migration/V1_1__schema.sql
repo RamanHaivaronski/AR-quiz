@@ -17,10 +17,15 @@ CREATE TABLE public.answer
 
 CREATE TABLE public.user_answer
 (
-  user_id VARCHAR(100),
-  question_id int NOT NULL,
-  answer_id int NOT NULL,
-  is_correct boolean,
-  CONSTRAINT user_answer_question_fk FOREIGN KEY (question_id) REFERENCES question (question_id),
-  CONSTRAINT user_answer_answer_fk FOREIGN KEY (answer_id) REFERENCES answer (answer_id)
-)
+  user_id      VARCHAR(100),
+  question_id  int NOT NULL
+    CONSTRAINT user_answer_question_fk
+    REFERENCES question,
+  answer_id    int NOT NULL
+    CONSTRAINT user_answer_answer_fk
+    REFERENCES answer,
+  is_correct   boolean,
+  useranswerid serial  NOT NULL
+    CONSTRAINT user_answer_pk
+    PRIMARY KEY
+);
