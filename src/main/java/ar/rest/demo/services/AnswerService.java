@@ -4,11 +4,13 @@ import ar.rest.demo.dao.AnswerDAO;
 import ar.rest.demo.dto.CheckAnswerRequest;
 import ar.rest.demo.dto.CheckAnswerResponse;
 import ar.rest.demo.models.UserAnswers;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -55,11 +57,15 @@ public class AnswerService {
             userAnswer.setQuestionId(answer.getQuest());
 
         }
-        answerDAO.insertUserAnswer(userAnswer);
+
+
+        if (answerDAO.checkForAnswer(userAnswer) == null) {
+            answerDAO.insertUserAnswer(userAnswer);
+        } else {
+            answerDAO.updateUserAnswer(userAnswer);
+        }
 
         return response;
     }
-
-
 
 }
