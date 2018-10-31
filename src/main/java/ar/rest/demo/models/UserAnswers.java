@@ -10,7 +10,6 @@ public class UserAnswers {
     private String userId;
     private Long questionId;
     private Long answerId;
-    @JsonIgnore
     private Boolean isCorrect;
 
 }

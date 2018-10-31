@@ -1,6 +1,46 @@
+import React, {Component} from "react"
 import { connect } from "react-redux"
 import QuestComponent from "../component/QuestComponent";
 import {closeQuestion, pickAnswer} from "../action/questActions";
+import {fetchAnswer, getAnswers} from "../action/answerActions";
+
+class QuestContainer extends Component {
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         answers: []
+    //     }
+    // }
+
+    // getAnswers = () => {
+    //     axios.get(`./api/result/checkAnswer`)
+    //         .then(res => {
+    //             const answers = res.data;
+    //             answers.forEach(x => {
+    //                 let model = document.getElementById(`quest_${x.questionId}`);
+    //                 if(model !== null){
+    //                     model.attributes[3].value = x.isCorrect ? "green" : "red";
+    //                 }
+    //             });
+    //             this.setState({answers: res.data});
+    //         });
+    // }
+
+    componentWillMount = () => {
+        setTimeout(()=> getAnswers(), 500)
+
+    }
+
+
+    render() {
+    return (
+        <div>
+            <QuestComponent {...this.props}/>
+        </div>
+    )
+    }
+}
 
 const mapStateToProps = state => {
   return {
@@ -17,9 +57,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const QuestContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(QuestComponent)
 
-export default QuestContainer;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(QuestContainer);

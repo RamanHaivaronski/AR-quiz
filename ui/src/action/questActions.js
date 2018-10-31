@@ -22,11 +22,15 @@ export const pickAnswer = (quest, answer) => {
     dispatch(checkAnswerBegin());
     axios.post("/api/result/", {quest, answer})
       .then(result => {
+        console.log(result);
           if (result.data.status === true) {
+
             dispatch(checkAnswerSuccess(answer))
+            document.getElementById("quest_1").attributes[3].value = "green"
           }
           else {
             dispatch(checkAnswerInvalid(answer))
+              document.getElementById("quest_1").attributes[3].value = "red"
           }
           setTimeout(() => {
             dispatch(closeQuestionEnd())

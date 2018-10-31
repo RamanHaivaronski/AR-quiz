@@ -12,8 +12,10 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 @Service
@@ -58,7 +60,6 @@ public class AnswerService {
 
         }
 
-
         if (answerDAO.checkForAnswer(userAnswer) == null) {
             answerDAO.insertUserAnswer(userAnswer);
         } else {
@@ -68,4 +69,25 @@ public class AnswerService {
         return response;
     }
 
+
+    public List<UserAnswers> checkAnswerResponse(){
+
+        String[] str = activeProfile.split(",");
+        boolean isUnsecured = Arrays.asList(str).contains("unsecured");
+        UserAnswers userAnswer = new UserAnswers();
+
+
+        if (!isUnsecured) {
+            OAuth2Authentication auth = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+            LinkedHashMap map = (LinkedHashMap) auth.getUserAuthentication().getDetails();
+            String userId = (String) map.get("sub");
+        } else {
+            String userId = "1234";
+            userAnswer.setUserId(userId);
+        }
+
+        List<UserAnswers> mylist = answerDAO.checkAllAnswers(userAnswer);
+
+        return mylist;
+    }
 }

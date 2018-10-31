@@ -7,6 +7,7 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk';
 import {fetchQuestion} from "./action/questActions";
 import QuestContainer from "./container/QuestContainer";
+import {fetchAnswers} from "./action/answerActions";
 
 const rootElement = document.getElementById("app");
 window.store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
