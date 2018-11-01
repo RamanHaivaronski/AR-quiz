@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { connect } from "react-redux"
+import {connect} from "react-redux"
 import QuestComponent from "../component/QuestComponent";
 import {closeQuestion, pickAnswer} from "../action/questActions";
 import {fetchAnswer, getAnswers} from "../action/answerActions";
@@ -28,33 +28,33 @@ class QuestContainer extends Component {
     // }
 
     componentWillMount = () => {
-        setTimeout(()=> getAnswers(), 500)
+        setTimeout(() => getAnswers(), 500)
 
     }
 
 
     render() {
-    return (
-        <div>
-            <QuestComponent {...this.props}/>
-        </div>
-    )
+        return <QuestComponent {...this.props}/>;
     }
 }
 
 const mapStateToProps = state => {
-  return {
-    quest: state.questData.quest,
-    valid: state.questData.valid,
-    picked: state.questData.picked
-  }
+    return {
+        quest: state.questData.quest,
+        valid: state.questData.valid,
+        picked: state.questData.picked
+    }
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onClose: () => {dispatch(closeQuestion())},
-    onPick: (quest,answer) => {dispatch(pickAnswer(quest,answer))}
-  }
+    return {
+        onClose: () => {
+            dispatch(closeQuestion())
+        },
+        onPick: (quest, answer) => {
+            dispatch(pickAnswer(quest, answer))
+        }
+    }
 }
 
 

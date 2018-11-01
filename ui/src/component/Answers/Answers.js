@@ -1,7 +1,6 @@
 import React from "react"
 import "./Answers.css"
 import posed from "react-pose";
-import styled from "styled-components";
 
 const AnimatedDiv = posed.div({
     idle: {scale: 0.9},
@@ -26,11 +25,11 @@ const Answers = ({answers, onClick, picked, valid}) => {
             return (
                 <AnimatedDiv
                     pose={picked === x.answerId ? "hovered" : "idle"}
-                    className="answer"
+                    className="answer round"
                     key={x.answerId}
                     onClick={() => onClick(x.answerId)}
                     style={status}>
-                    <h4 style={{fontSize: "1.5em"}}>{x.text}</h4>
+                    <h4 style={{fontSize: "1em", margin: "1em"}}>{x.text}</h4>
                 </AnimatedDiv>
             )
         })}

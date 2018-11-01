@@ -1,12 +1,10 @@
 .answer {
     width: 80vw;
-    background-color: #f0f7f0;
-    border-radius: 50px;
     text-align: center;
     height: 10vh;
     margin: 2vh;
-    font-size: 1em;
+    font-size: 4vw;
     font-family: sans-serif;
     cursor: pointer;
-    border: 2px solid;
+    min-width: 360px;
 }

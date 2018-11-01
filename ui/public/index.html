@@ -12,7 +12,7 @@
 <!-- arjs - debugUIEnabled: false; swithc off debug -->
 
 <!-- draw scene -->
-<a-scene class="aframebox" embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+<a-scene class="aframebox" embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
     <!-- preset 3D object "EPOL SOFT" -->
     <!--<a-assets>-->
     <!--<a-asset-item id="epolsoft" src="./markers/epolsoft_b.gltf"></a-asset-item>-->
@@ -34,7 +34,7 @@
             scale="1.2 1.2 1.2"
             position="0.325 2.541 -5.8"
             onclick="clicked(1)"
-            material="opacity:0; color: black;">
+            material="opacity:0.4; color: black;">
         <a-animation attribute="position"
                      dur="1000"
                      fill="forwards"
@@ -48,7 +48,6 @@
                 color="#AAAAAA"
                 radius="1.25"
                 shadow >
-
         </a-sphere>
     </a-box>
 

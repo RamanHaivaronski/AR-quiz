@@ -5,3 +5,9 @@
 .close-thik:after {
     content: '✖'; /* UTF-8 symbol */
 }
+
+.round {
+    background-color: #f0f7f0;
+    border: 2px solid;
+    border-radius: 50px
+}
