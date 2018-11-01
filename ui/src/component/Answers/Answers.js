@@ -1,25 +1,40 @@
 import React from "react"
 import "./Answers.css"
+import posed from "react-pose";
+import styled from "styled-components";
+
+const AnimatedDiv = posed.div({
+    idle: {scale: 0.9},
+    hovered: {scale: 1}
+});
+
 
 const Answers = ({answers, onClick, picked, valid}) => {
-  if (answers === null)
-    return null;
+    if (answers === null)
+        return null;
 
-  return <React.Fragment>
-    {answers.map(x => {
-      let status = null;
-      if(picked === x.answerId){
-        if(valid){
-          status = {backgroundColor: "green"}
-        }else{
-          status = {backgroundColor: "red"}
-        }
-      }
-      return <div className="answer" key={x.answerId} onClick={() => onClick(x.answerId)} style={status}>
-        <h4 style={{margin: "5vw"}}>{x.text}</h4>
-      </div>
-    })}
-  </React.Fragment>
+    return <React.Fragment>
+        {answers.map(x => {
+            let status = null;
+            if (picked === x.answerId && valid !== undefined) {
+                if (valid) {
+                    status = {backgroundColor: "green"}
+                } else {
+                    status = {backgroundColor: "red"}
+                }
+            }
+            return (
+                <AnimatedDiv
+                    pose={picked === x.answerId ? "hovered" : "idle"}
+                    className="answer"
+                    key={x.answerId}
+                    onClick={() => onClick(x.answerId)}
+                    style={status}>
+                    <h4 style={{fontSize: "1.5em"}}>{x.text}</h4>
+                </AnimatedDiv>
+            )
+        })}
+    </React.Fragment>
 };
 
 export default Answers;
