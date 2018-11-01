@@ -24,7 +24,7 @@ export const pickAnswer = (quest, answer) => {
             .then(result => {
                     console.log(result);
                     let color = result.data.status === true ? "green" : "red";
-                    document.getElementById(`quest_${quest}`).attributes[3].value = color;
+                    document.getElementById(`quest_${quest}`).attributes['entity-color'].value = color;
                     dispatch(checkAnswerEnd(result.data.status));
                     setTimeout(() => {
                         dispatch(closeQuestionEnd());

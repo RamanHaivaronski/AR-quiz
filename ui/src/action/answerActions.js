@@ -7,7 +7,7 @@ export const getAnswers = () => {
             answers.forEach(x => {
                 let model = document.getElementById(`quest_${x.questionId}`);
                 if(model !== null){
-                    model.attributes[3].value = x.isCorrect ? "green" : "red";
+                    model.attributes['entity-color'].value = x.isCorrect ? "green" : "red";
                 }
             });
         });

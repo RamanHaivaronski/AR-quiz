@@ -2,60 +2,62 @@
 <!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
 
-<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 <script src="./js/aframe-ar.js"></script>
 <script src="./js/global.js"></script>
 <link rel="stylesheet" type="text/css" href="./style.css">
 <body style='margin : 0px; overflow: hidden;'>
 <div id="app"></div>
 <script src="./bundle.js"></script>
+
+<script>
+    AFRAME.registerComponent('entity-color', {
+        schema: {default: 'skyblue'},
+        init: function () {
+            this.el.addEventListener('model-loaded', this.update.bind(this));
+        },
+        update: function () {
+            let mesh = this.el.getObject3D('mesh');
+            let data = this.data;
+            if (!mesh) { return; }
+            mesh.traverse(function (node) {
+                if (node.isMesh) {
+                    node.material.color.set(data);
+                }
+            });
+        }
+    });
+</script>
 <!-- arjs - debugUIEnabled: false; swithc off debug -->
 
 <!-- draw scene -->
 <a-scene class="aframebox" embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
     <!-- preset 3D object "EPOL SOFT" -->
-    <!--<a-assets>-->
-    <!--<a-asset-item id="epolsoft" src="./markers/epolsoft_b.gltf"></a-asset-item>-->
-    <!--</a-assets>-->
+    <a-assets>
+        <a-asset-item id="question-model" src="./model/question/question.gltf"></a-asset-item>
+    </a-assets>
 
-    <!--&lt;!&ndash; set custom EpolSoft custom marker  &ndash;&gt;-->
-    <!--<a-marker type='pattern' url='./markers/e-marker.patt'>-->
-    <!--&lt;!&ndash; usage of custom EpolSot object  &ndash;&gt;-->
-    <!--<a-entity position="0 1 0" gltf-model="#epolsoft">-->
-    <!--&lt;!&ndash; set animation event for custom EpolSot object  &ndash;&gt;-->
-    <!--<a-animation begin="click" attribute="rotation" to="0 360 0" easing="linear" dur="2000" fill="backwards"/>-->
-    <!--</a-entity>-->
-    <!--</a-marker>-->
-
-    <!--<a-gltf-model onclick="clicked()" src="#epolsoft" rotation="90 0 0" position="0 4.6 -7.2"></a-gltf-model>-->
-
-    <a-box
-            id="quest__1"
-            scale="1.2 1.2 1.2"
-            position="0.325 2.541 -5.8"
-            onclick="clicked(1)"
-            material="opacity:0.4; color: black;">
-        <a-animation attribute="position"
-                     dur="1000"
-                     fill="forwards"
-                     to="0.325 2.741 -5.8"
-                     direction="alternate"
-                     repeat="indefinite"></a-animation>
-        <a-sphere
-                id="quest_1"
-                position="0 0 0"
-                scale="0.2 0.2 0.2"
-                color="#AAAAAA"
-                radius="1.25"
-                shadow >
-        </a-sphere>
-    </a-box>
-
+    <a-marker type='pattern'
+              url='./markers/1-pattern-marker.patt'
+              onclick="clicked(1)">
+        <a-gltf-model id="quest_1"
+                      src="#question-model"
+                      onclick="clicked(1)"
+                      position="0 0 0"
+                      scale="3 3 3"
+                      entity-color>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-gltf-model>
+    </a-marker>
 
     <!-- set camera  -->
-    <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"/>
+    <a-entity id="camera" position="0 0 0" camera look-controls-enabled="false" cursor="rayOrigin: mouse"></a-entity>
 
 </a-scene>
-
 
 </body>
