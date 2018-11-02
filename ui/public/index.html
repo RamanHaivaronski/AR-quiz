@@ -1,10 +1,7 @@
-<!-- XILK epolsoft.com-->
-<!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
-
 <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-<script src="./js/aframe-ar.js"></script>
-<script src="./js/global.js"></script>
+<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="./style.css">
 <body style='margin : 0px; overflow: hidden;'>
 <div id="app"></div>
@@ -19,7 +16,9 @@
         update: function () {
             let mesh = this.el.getObject3D('mesh');
             let data = this.data;
-            if (!mesh) { return; }
+            if (!mesh) {
+                return;
+            }
             mesh.traverse(function (node) {
                 if (node.isMesh) {
                     node.material.color.set(data);
@@ -27,37 +26,46 @@
             });
         }
     });
-</script>
-<!-- arjs - debugUIEnabled: false; swithc off debug -->
 
-<!-- draw scene -->
-<a-scene class="aframebox" embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
-    <!-- preset 3D object "EPOL SOFT" -->
+    AFRAME.registerComponent('click-handler', {
+        schema: {default: 'not assigned'},
+        init: function () {
+            const id = this.data;
+            const animatedMarker = document.querySelector(`#marker_${id}`);
+            const aEntity = document.querySelector(`#quest_${id}`);
+
+            animatedMarker.addEventListener('click', function (ev, target) {
+                const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+                if (aEntity && intersectedElement === aEntity) {
+                    console.log(id);
+                    window.store.dispatch(window.actions.fetchQuest(id))
+                }
+            });
+        }
+    });
+</script>
+
+<a-scene embedded
+         arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3'>
+
     <a-assets>
-        <a-asset-item id="question-model" src="./model/question/question.gltf"></a-asset-item>
+        <a-asset-item id="znak-model" src="./model/znak.gltf"></a-asset-item>
     </a-assets>
 
-    <a-marker type='pattern'
+    <a-marker id="marker_1"
+              emitevents="true"
+              cursor="fuse: false; rayOrigin: mouse"
+              type='pattern'
               url='./markers/1-pattern-marker.patt'
-              onclick="clicked(1)">
-        <a-gltf-model id="quest_1"
-                      src="#question-model"
-                      onclick="clicked(1)"
-                      position="0 0 0"
-                      scale="3 3 3"
-                      entity-color>
-            <a-animation attribute="rotation"
-                         dur="10000"
-                         fill="forwards"
-                         to="0 0 360"
-                         repeat="indefinite">
-            </a-animation>
-        </a-gltf-model>
+              click-handler="1">
+        <a-entity id="quest_1"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+        </a-entity>
     </a-marker>
 
-    <!-- set camera  -->
-    <a-entity id="camera" position="0 0 0" camera look-controls-enabled="false" cursor="rayOrigin: mouse"></a-entity>
-
+    <a-entity camera></a-entity>
 </a-scene>
 
 </body>
