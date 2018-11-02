@@ -7,6 +7,7 @@ import ar.rest.demo.models.UserAnswers;
 import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
@@ -24,20 +25,27 @@ public class AnswerService {
     @Autowired
     AnswerDAO answerDAO;
 
-    @Value("${spring.profiles.active}")
-    private String activeProfile;
+    @Autowired
+    Environment env;
 
     public Boolean checkAnswer(long qid, long text) {
         return answerDAO.checkAnswer(qid, text);
     }
 
+    private boolean isUnsecured(){
+        String[] activeProfiles = env.getActiveProfiles();
+
+        boolean isUnsecured = false;
+        if(activeProfiles.length > 0)
+            isUnsecured = Arrays.asList(activeProfiles).contains("unsecured");
+        return  isUnsecured;
+    }
+
     public CheckAnswerResponse addAnswer(CheckAnswerRequest answer){
 
         Boolean result = checkAnswer(answer.getQuest(), answer.getAnswer());
-        String[] str = activeProfile.split(",");
-        boolean isUnsecured = Arrays.asList(str).contains("unsecured");
-        UserAnswers userAnswer = new UserAnswers();
 
+        UserAnswers userAnswer = new UserAnswers();
         CheckAnswerResponse response = new CheckAnswerResponse();
         if (result == null) {
             response.setStatus(false);
@@ -46,7 +54,7 @@ public class AnswerService {
             response.setStatus(result);
         }
 
-        if (!isUnsecured) {
+        if (!isUnsecured()) {
             OAuth2Authentication auth = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
             LinkedHashMap map = (LinkedHashMap) auth.getUserAuthentication().getDetails();
             String userId = (String) map.get("sub");
@@ -71,13 +79,9 @@ public class AnswerService {
 
 
     public List<UserAnswers> checkAnswerResponse(){
-
-        String[] str = activeProfile.split(",");
-        boolean isUnsecured = Arrays.asList(str).contains("unsecured");
         UserAnswers userAnswer = new UserAnswers();
 
-
-        if (!isUnsecured) {
+        if (!isUnsecured()) {
             OAuth2Authentication auth = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
             LinkedHashMap map = (LinkedHashMap) auth.getUserAuthentication().getDetails();
             String userId = (String) map.get("sub");
