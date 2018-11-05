@@ -29,7 +29,7 @@ const Answers = ({answers, onClick, picked, valid}) => {
                     key={x.answerId}
                     onClick={() => onClick(x.answerId)}
                     style={status}>
-                    <h4 style={{fontSize: "1em", margin: "1em"}}>{x.text}</h4>
+                    <p style={{fontSize: "5vh", margin: "2vh"}}>{x.text}</p>
                 </AnimatedDiv>
             )
         })}
