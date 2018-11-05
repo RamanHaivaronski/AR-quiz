@@ -1,6 +1,7 @@
 <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="./js/global.js"></script>
 
 <link rel="stylesheet" type="text/css" href="./style.css">
 <body style='margin : 0px; overflow: hidden;'>
@@ -27,7 +28,7 @@
         }
     });
 
-    AFRAME.registerComponent('click-handler', {
+    /*AFRAME.registerComponent('click-handler', {
         schema: {default: 'not assigned'},
         init: function () {
             const id = this.data;
@@ -37,12 +38,11 @@
             animatedMarker.addEventListener('click', function (ev, target) {
                 const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
                 if (aEntity && intersectedElement === aEntity) {
-                    console.log(id);
                     window.store.dispatch(window.actions.fetchQuest(id))
                 }
             });
         }
-    });
+    });*/
 </script>
 
 <a-scene embedded
@@ -57,7 +57,10 @@
               cursor="fuse: false; rayOrigin: mouse"
               type='pattern'
               url='./markers/1-pattern-marker.patt'
-              click-handler="1">
+              >
+        <a-box opacity="0"
+            onclick="clicked(1)">
+        </a-box>
         <a-entity id="quest_1"
                   gltf-model="#znak-model"
                   scale="2 2 2"
@@ -65,7 +68,7 @@
         </a-entity>
     </a-marker>
 
-    <a-entity camera></a-entity>
+    <a-entity camera ></a-entity>
 </a-scene>
 
 </body>
