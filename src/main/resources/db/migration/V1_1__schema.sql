@@ -15,17 +15,16 @@ CREATE TABLE public.answer
   CONSTRAINT answer_question_qid_fk FOREIGN KEY (question_id) REFERENCES question (question_id)
 );
 
-CREATE TABLE public.user_answer
+
+create table public.user_answer
 (
-  user_id      VARCHAR(100),
-  question_id  int NOT NULL
-    CONSTRAINT user_answer_question_fk
-    REFERENCES question,
-  answer_id    int NOT NULL
-    CONSTRAINT user_answer_answer_fk
-    REFERENCES answer,
-  is_correct   boolean,
-  useranswerid serial  NOT NULL
-    CONSTRAINT user_answer_pk
-    PRIMARY KEY
+  user_id            varchar(100) not null,
+  question_id        integer      not null
+    constraint user_answer_question_fk
+    references question,
+  number_of_attempts integer,
+  is_correct         boolean,
+  useranswerid       serial       not null
+    constraint user_answer_pk
+    primary key
 );

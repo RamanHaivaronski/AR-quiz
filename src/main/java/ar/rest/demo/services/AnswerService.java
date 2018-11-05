@@ -28,22 +28,25 @@ public class AnswerService {
     @Autowired
     Environment env;
 
+    private static Long count=0l;
+
     public Boolean checkAnswer(long qid, long text) {
         return answerDAO.checkAnswer(qid, text);
     }
 
-    private boolean isUnsecured() {
+    private boolean isUnsecured(){
         String[] activeProfiles = env.getActiveProfiles();
 
         boolean isUnsecured = false;
-        if (activeProfiles.length > 0)
+        if(activeProfiles.length > 0)
             isUnsecured = Arrays.asList(activeProfiles).contains("unsecured");
-        return isUnsecured;
+        return  isUnsecured;
     }
 
-    public CheckAnswerResponse addAnswer(CheckAnswerRequest answer) {
+    public CheckAnswerResponse addAnswer(CheckAnswerRequest answer){
 
         Boolean result = checkAnswer(answer.getQuest(), answer.getAnswer());
+        String userId;
 
         UserAnswers userAnswer = new UserAnswers();
         CheckAnswerResponse response = new CheckAnswerResponse();
@@ -54,7 +57,6 @@ public class AnswerService {
             response.setStatus(result);
         }
 
-        String userId;
         if (!isUnsecured()) {
             OAuth2Authentication auth = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
             LinkedHashMap map = (LinkedHashMap) auth.getUserAuthentication().getDetails();
@@ -63,10 +65,10 @@ public class AnswerService {
         } else {
             userId = "1234";
         }
-
+        count++;
         userAnswer.setUserId(userId);
         userAnswer.setIsCorrect(result);
-        userAnswer.setAnswerId(answer.getAnswer());
+        userAnswer.setNumberOfAttempts(count);
         userAnswer.setQuestionId(answer.getQuest());
 
         if (answerDAO.checkForAnswer(userAnswer) == null) {
@@ -75,26 +77,24 @@ public class AnswerService {
             answerDAO.updateUserAnswer(userAnswer);
         }
 
+
         return response;
     }
 
 
-    public List<UserAnswers> checkAnswerResponse() {
+    public List<UserAnswers> checkAnswerResponse(){
         UserAnswers userAnswer = new UserAnswers();
         String userId;
+
         if (!isUnsecured()) {
             OAuth2Authentication auth = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
             LinkedHashMap map = (LinkedHashMap) auth.getUserAuthentication().getDetails();
             userId = (String) map.get("sub");
         } else {
             userId = "1234";
+
         }
-
         userAnswer.setUserId(userId);
-
-
-        List<UserAnswers> mylist = answerDAO.checkAllAnswers(userAnswer);
-
-        return mylist;
+        return answerDAO.checkAllAnswers(userAnswer);
     }
 }
