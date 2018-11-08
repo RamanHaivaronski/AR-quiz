@@ -23,7 +23,7 @@ export const pickAnswer = (quest, answer) => {
         axios.post("/api/result/", {quest, answer})
             .then(result => {
                     console.log(result);
-                    let color = result.data.status === true ? "green" : "red";
+                    let color = result.data.status === true ? "#98fb98" : "#f08080";
                     document.getElementById(`quest_${quest}`).attributes['entity-color'].value = color;
                     dispatch(checkAnswerEnd(result.data.status));
                     setTimeout(() => {

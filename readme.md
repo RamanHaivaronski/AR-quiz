@@ -12,3 +12,6 @@
 3. For run from jar
 
         java -jar -Dspring.profiles.active=[spring profile] -DPOSTGRESS_HOST=[postgres db host] -DPOSTGRES_USERNAME=[postgres user] -DPOSTGRES_PASSWORD=[postgres pass] [path to jar].jar
+
+        Example:
+        java -jar -Dspring.profiles.active=unsecured -DPOSTGRESS_HOST=localhost -DPOSTGRES_USERNAME=quiz -DPOSTGRES_PASSWORD=Qui3_Zer quiz-0.0.1-SNAPSHOT.jar

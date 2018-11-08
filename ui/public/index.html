@@ -28,21 +28,17 @@
         }
     });
 
-    /*AFRAME.registerComponent('click-handler', {
-        schema: {default: 'not assigned'},
+    AFRAME.registerComponent('question-click-handler', {
         init: function () {
-            const id = this.data;
-            const animatedMarker = document.querySelector(`#marker_${id}`);
-            const aEntity = document.querySelector(`#quest_${id}`);
+            let questionId = this.el.id.match(/\d+$/)[0];
+            let modelComponent = document.querySelector(`#quest_${questionId}`);
+            let clickableComponent = document.querySelector(`#${this.el.id}`);
 
-            animatedMarker.addEventListener('click', function (ev, target) {
-                const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-                if (aEntity && intersectedElement === aEntity) {
-                    window.store.dispatch(window.actions.fetchQuest(id))
-                }
+            this.el.addEventListener('click', function (event, target) {
+                window.store.dispatch(window.actions.fetchQuest(questionId));
             });
         }
-    });*/
+    });
 </script>
 
 <a-scene embedded
@@ -52,23 +48,248 @@
         <a-asset-item id="znak-model" src="./model/znak.gltf"></a-asset-item>
     </a-assets>
 
-    <a-marker id="marker_1"
-              emitevents="true"
-              cursor="fuse: false; rayOrigin: mouse"
-              type='pattern'
-              url='./markers/1-pattern-marker.patt'
-              >
-        <a-box opacity="0"
-            onclick="clicked(1)">
-        </a-box>
+    <a-marker
+            id="marker_1"
+            type='pattern'
+            url='./markers/new/pattern-marker-1.patt'>
+
         <a-entity id="quest_1"
                   gltf-model="#znak-model"
-                  scale="2 2 2"
-                  entity-color>
+                  entity-color
+                  scale="2 2 2">
+            <a-box id="plane_1"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
         </a-entity>
     </a-marker>
 
-    <a-entity camera ></a-entity>
+    <a-marker
+            id="marker_2"
+            type='pattern'
+            url='./markers/new/pattern-marker-2.patt'>
+        <a-entity id="quest_2"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_2"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_3"
+            type='pattern'
+            url='./markers/new/pattern-marker-3.patt'>
+        <a-entity id="quest_3"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_3"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_4"
+            type='pattern'
+            url='./markers/new/pattern-marker-4.patt'>
+        <a-entity id="quest_4"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_4"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_5"
+            type='pattern'
+            url='./markers/new/pattern-marker-5.patt'>
+        <a-entity id="quest_5"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_5"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_6"
+            type='pattern'
+            url='./markers/new/pattern-marker-6.patt'>
+        <a-entity id="quest_6"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_6"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_7"
+            type='pattern'
+            url='./markers/new/pattern-marker-7.patt'>
+        <a-entity id="quest_7"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_7"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_8"
+            type='pattern'
+            url='./markers/new/pattern-marker-8.patt'>
+        <a-entity id="quest_8"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_8"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_9"
+            type='pattern'
+            url='./markers/new/pattern-marker-9.patt'>
+        <a-entity id="quest_9"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_9"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-marker
+            id="marker_10"
+            type='pattern'
+            url='./markers/new/pattern-marker-10.patt'>
+        <a-entity id="quest_10"
+                  gltf-model="#znak-model"
+                  scale="2 2 2"
+                  entity-color>
+            <a-box id="plane_10"
+                   opacity="0"
+                   scale="0.5 0.5 0.7"
+                   rotation="0 0 0"
+                   question-click-handler
+            >
+            </a-box>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         fill="forwards"
+                         to="0 0 360"
+                         repeat="indefinite">
+            </a-animation>
+        </a-entity>
+    </a-marker>
+
+    <a-entity camera cursor="fuse: false; rayOrigin: mouse"></a-entity>
 </a-scene>
 
 </body>
