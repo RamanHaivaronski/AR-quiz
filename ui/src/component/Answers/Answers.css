@@ -1,8 +1,7 @@
 .answer {
-    width: 80vw;
     text-align: center;
     height: 10vh;
-    margin: 2vh;
+    margin-bottom: 2vh;
     font-size: 4vw;
     font-family: sans-serif;
     cursor: pointer;

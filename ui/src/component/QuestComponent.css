@@ -24,6 +24,7 @@
     flex-basis: 0;
     align-items: center;
     display: flex;
+    height: 37vh;
     flex-direction: column;
 }
 
@@ -31,6 +32,11 @@
     position: relative;
     height: 0;
     z-index: 100;
+}
+
+.answerFrame{
+    margin-bottom: 15vh;
+    align-items: center;
 }
 
 .close {

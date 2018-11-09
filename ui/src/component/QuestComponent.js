@@ -28,7 +28,7 @@ const QuestComponent = ({quest, onClose, onPick, picked, valid}) => {
             <div className="questDataFrame">
                 {Question}
             </div>
-            <div className="questDataFrame">
+            <div className="answerFrame">
                 <Answers picked={picked} valid={valid} answers={quest.answers}
                          onClick={answer => onPick(quest.questionId, answer)}/>
             </div>
